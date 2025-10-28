@@ -2,23 +2,65 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    
+    <!-- Performance Critical Meta Tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dawn-whisper-quest</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
-
-    <meta property="og:title" content="dawn-whisper-quest" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <!-- Apple Performance Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Optimized Fonts - Apple-style weights (300, 400, 500, 600) -->
+    <link 
+      rel="preload" 
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+    />
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" 
+      rel="stylesheet"
+      media="print" 
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    </noscript>
+    
+    
+    <!-- Preconnect to optimize external resources -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    
+    <!-- PWA Configuration -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#22c55e" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="NESS" />
+    
+    <!-- SEO Optimization -->
+    <title>NESS Energy Systems - Advanced Battery Storage Solutions</title>
+    <meta name="description" content="Premium battery energy storage systems for residential and commercial applications. Engineered for performance, designed for life." />
+    <meta name="keywords" content="battery storage, energy systems, solar battery, home energy, commercial energy" />
+    <link rel="canonical" href="https://nessenergy.com" />
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   </head>
-
   <body>
     <div id="root"></div>
+    <script>
+      (function () {
+        try {
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister())).catch(() => {});
+          }
+          if (window.caches && caches.keys) {
+            caches.keys().then(keys => keys.forEach(k => caches.delete(k))).catch(() => {});
+          }
+        } catch (e) {}
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
