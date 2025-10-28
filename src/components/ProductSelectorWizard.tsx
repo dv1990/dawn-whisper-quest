@@ -163,24 +163,12 @@ CUSTOMER MESSAGE:
 ${formData.message || 'No additional message'}
       `.trim();
 
-      // Using EmailJS - dynamically loaded to keep initial bundle small
-      const { default: emailjs } = await import('@emailjs/browser');
-      await emailjs.send(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
-        {
-          to_email: 'contact@nunam.com',
-          from_name: formData.name,
-          from_email: formData.email,
-          from_phone: formData.phone,
-          message: emailContent
-        },
-        'YOUR_PUBLIC_KEY'
-      );
+      // EmailJS disabled until configured - see EMAILJS_SETUP.md
+      console.log('Quote request details:', emailContent);
 
       toast({
-        title: "Quote Request Sent!",
-        description: "We'll get back to you within 24 hours with your custom quote.",
+        title: "Configuration Saved!",
+        description: "Please email your quote request to contact@nunam.com. We'll respond within 24 hours.",
       });
 
       // Reset form after successful submission
@@ -195,10 +183,10 @@ ${formData.message || 'No additional message'}
       }, 2000);
 
     } catch (error) {
-      console.error('Error sending email:', error);
+      console.error('Error:', error);
       toast({
-        title: "Setup Required",
-        description: "EmailJS needs to be configured. Please see EMAILJS_SETUP.md or contact us at contact@nunam.com",
+        title: "Error",
+        description: "Something went wrong. Please try again or contact us at contact@nunam.com",
         variant: "destructive"
       });
     } finally {
