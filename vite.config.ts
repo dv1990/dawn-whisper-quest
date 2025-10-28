@@ -47,6 +47,10 @@ export default defineConfig(({ mode }) => ({
             if (id.includes('react-router')) {
               return 'router';
             }
+            // React Query - bundle with React
+            if (id.includes('@tanstack/react-query')) {
+              return 'react-vendor';
+            }
             // Framer Motion separate chunk (only loaded when needed)
             if (id.includes('framer-motion')) {
               return 'framer-motion';
@@ -85,6 +89,7 @@ export default defineConfig(({ mode }) => ({
       'react',
       'react-dom',
       'react-router-dom',
+      '@tanstack/react-query',
       '@radix-ui/react-tooltip',
       '@radix-ui/react-slot',
     ],

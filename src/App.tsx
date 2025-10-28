@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
 import ErrorBoundary from "@/components/ErrorBoundary";
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 
 // Critical page - Eager loaded for instant first paint
 import Index from "./pages/Index";
@@ -42,16 +42,6 @@ const TroubleshootingGuide = lazy(() => import("./pages/TroubleshootingGuide"));
 const Downloads = lazy(() => import("./pages/Downloads"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-// Create QueryClient instance with default options
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 60 * 5, // 5 minutes
-      retry: 1,
-    },
-  },
-});
-
 // Loading fallback component with skeleton
 const PageLoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
@@ -63,6 +53,16 @@ const PageLoadingFallback = () => (
 );
 
 const App = () => {
+  // Initialize QueryClient inside component to avoid module-level React duplication issues
+  const [queryClient] = useState(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60 * 5, // 5 minutes
+        retry: 1,
+      },
+    },
+  }));
+
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
