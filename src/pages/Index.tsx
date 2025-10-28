@@ -136,12 +136,6 @@ const Index = () => {
             While others need replacement every 2 years, NESS is engineered to endure. 
             One investment. A decade of reliability. Zero maintenance.
           </p>
-          <div className="mt-12">
-            <Link to="/technology" className="text-energy hover:text-energy-glow font-medium inline-flex items-center gap-2 text-lg group">
-              Learn about our technology
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
         </div>
       </section>
 

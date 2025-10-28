@@ -13,7 +13,7 @@ import Index from "./pages/Index";
 // Main pages - Lazy loaded for better performance
 const InstallersEnhanced = lazy(() => import("./pages/InstallersEnhanced"));
 const CommercialEnhanced = lazy(() => import("./pages/CommercialEnhanced"));
-const TechnologyEnhanced = lazy(() => import("./pages/TechnologyEnhanced"));
+// const TechnologyEnhanced = lazy(() => import("./pages/TechnologyEnhanced"));
 const ContactEnhanced = lazy(() => import("./pages/ContactEnhanced"));
 
 // Product pages - Lazy loaded
@@ -70,14 +70,14 @@ const App = () => {
           
           {/* Enhanced Product Routes */}
           <Route path="/commercial-enhanced" element={<CommercialEnhanced />} />
-          <Route path="/technology-enhanced" element={<TechnologyEnhanced />} />
+          {/* <Route path="/technology-enhanced" element={<TechnologyEnhanced />} /> */}
           <Route path="/installers-enhanced" element={<InstallersEnhanced />} />
           
           {/* Product Routes */}
           <Route path="/homeowners" element={<ContactHomeowner />} />
           <Route path="/ci" element={<CommercialEnhanced />} />
           <Route path="/installers" element={<InstallersEnhanced />} />
-          <Route path="/technology" element={<TechnologyEnhanced />} />
+          {/* <Route path="/technology" element={<TechnologyEnhanced />} /> */}
           <Route path="/warranty" element={<TrueWarranty />} />
           <Route path="/find-installer" element={<FindInstaller />} />
           <Route path="/products/ness-ac-sync" element={<NessAcSync />} />

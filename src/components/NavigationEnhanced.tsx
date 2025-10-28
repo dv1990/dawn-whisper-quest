@@ -40,8 +40,7 @@ const NavigationEnhanced = () => {
     { label: "Homeowners", href: "/homeowners", icon: Home, description: "NESS products for homes" },
     { label: "C&I", href: "/ci", icon: Building2, description: "POD & CUBE systems" },
     { label: "Installers", href: "/installers", icon: Wrench, description: "Partner with NESS" },
-    { label: "Warranty", href: "/warranty", icon: Shield, description: "Trust that matters" },
-    { label: "Technology", href: "/technology", icon: Cpu, description: "Innovation deep dive" }
+    { label: "Warranty", href: "/warranty", icon: Shield, description: "Trust that matters" }
   ];
 
   const companyItems = [
