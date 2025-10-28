@@ -69,8 +69,16 @@ export default defineConfig(({ mode }) => ({
         },
         // Optimize chunk loading
         experimentalMinChunkSize: 20000,
+        // Add preload directives
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
       }
-    }
+    },
+    // Enable module preload for better performance
+    modulePreload: {
+      polyfill: true,
+    },
   },
   optimizeDeps: {
     include: [

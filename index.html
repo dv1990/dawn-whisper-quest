@@ -7,11 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     
-    <!-- Resource Hints for Better Performance -->
+    <!-- Critical Resource Hints - Load assets in parallel -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    
+    <!-- Preload critical assets to reduce chain length and improve LCP -->
+    <link rel="preload" href="/src/main.tsx" as="script" crossorigin fetchpriority="high" />
     
     <!-- Optimized Fonts - Apple-style weights (300, 400, 500, 600) -->
     <link 
@@ -64,7 +67,8 @@
       })();
     </script>
     
-    <!-- Main application bundle with module preload -->
+    <!-- Main application bundle with early hints -->
+    <link rel="modulepreload" href="/src/main.tsx" />
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
