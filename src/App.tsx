@@ -63,8 +63,6 @@ const PageLoadingFallback = () => (
 );
 
 const App = () => {
-  console.error('[NESS] App component rendering');
-  
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
