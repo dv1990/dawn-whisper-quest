@@ -9,30 +9,55 @@
   Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With
 
 # Cache static assets with versioned filenames for 1 year
-/assets/*
+/assets/*.js
   Cache-Control: public, max-age=31536000, immutable
   Content-Type: application/javascript
+  X-Content-Type-Options: nosniff
   Access-Control-Allow-Origin: *
   Access-Control-Allow-Methods: GET,POST,OPTIONS
+
+/assets/*.mjs
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: application/javascript
+  X-Content-Type-Options: nosniff
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET,POST,OPTIONS
+
+/assets/*.css
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: text/css
+  X-Content-Type-Options: nosniff
+  Access-Control-Allow-Origin: *
+
+/assets/*.wasm
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: application/wasm
+  X-Content-Type-Options: nosniff
+  Access-Control-Allow-Origin: *
 
 # Cache CSS files with versioned filenames for 1 year
 /*.css
   Cache-Control: public, max-age=31536000, immutable
+  Content-Type: text/css
+  X-Content-Type-Options: nosniff
 
 # Cache JS files with versioned filenames for 1 year
 /*.js
   Cache-Control: public, max-age=31536000, immutable
   Content-Type: application/javascript
+  X-Content-Type-Options: nosniff
   Access-Control-Allow-Origin: *
 
 /*.mjs
   Cache-Control: public, max-age=31536000, immutable
   Content-Type: application/javascript
+  X-Content-Type-Options: nosniff
   Access-Control-Allow-Origin: *
 
 /*.wasm
   Cache-Control: public, max-age=31536000, immutable
   Content-Type: application/wasm
+  X-Content-Type-Options: nosniff
   Access-Control-Allow-Origin: *
 
 # Cache images for 1 year
