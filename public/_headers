@@ -1,4 +1,5 @@
-# Security Headers - Applied to all routes
+# Security and Cache Headers - Applied to all routes
+# Updated: Force cache headers application
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
@@ -7,6 +8,7 @@
   Access-Control-Allow-Origin: *
   Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
   Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With
+  Cache-Control: public, max-age=0, must-revalidate
 
 # Cache static assets with versioned filenames for 1 year
 /assets/*.js
