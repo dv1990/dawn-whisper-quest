@@ -197,7 +197,7 @@ const Index = () => {
 
               <div className="relative">
                 <PerformanceImage
-                  src={nessPodProduct}
+                  src={nessProProduct}
                   alt="NESS Powerwall - Premium home battery backup system"
                   className="w-full h-auto rounded-2xl"
                   priority={false}
@@ -215,7 +215,7 @@ const Index = () => {
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="relative order-2 md:order-1">
                 <PerformanceImage
-                  src={nessProProduct}
+                  src={nessPodProduct}
                   alt="NESS Pod - Commercial & Industrial battery backup system"
                   className="w-full h-auto rounded-2xl"
                   priority={false}
