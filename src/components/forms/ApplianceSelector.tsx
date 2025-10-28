@@ -32,40 +32,40 @@ export const ApplianceSelector: React.FC<ApplianceSelectorProps> = ({
         {appliances.map((appliance) => {
           const isSelected = selectedAppliances.includes(appliance.id);
           return (
-            <div
-              key={appliance.id}
-              onClick={() => onToggle(appliance.id)}
-              role="checkbox"
-              aria-checked={isSelected}
-              aria-label={`${appliance.name} - ${appliance.watts} watts`}
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  onToggle(appliance.id);
-                }
-              }}
-              className={cn(
-                "flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all",
-                isSelected
-                  ? "border-primary bg-primary/5"
-                  : "border-border hover:border-primary/50",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-              )}
-            >
-              <div className={cn(
-                "w-10 h-10 rounded-full flex items-center justify-center",
-                isSelected
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted"
-              )}>
-                {appliance.icon}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="font-medium text-sm">{appliance.name}</div>
-                <div className="text-xs text-muted-foreground">{appliance.watts}W</div>
-              </div>
-            </div>
+      <div
+        key={appliance.id}
+        onClick={() => onToggle(appliance.id)}
+        role="checkbox"
+        aria-checked={isSelected}
+        aria-label={`${appliance.name} - ${appliance.watts} watts`}
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onToggle(appliance.id);
+          }
+        }}
+        className={cn(
+          "flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all",
+          isSelected
+            ? "border-primary bg-primary/5"
+            : "border-border hover:border-primary/50",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        )}
+      >
+        <div className={cn(
+          "w-10 h-10 rounded-full flex items-center justify-center",
+          isSelected
+            ? "bg-primary text-primary-foreground"
+            : "bg-muted"
+        )}>
+          <appliance.icon className="w-5 h-5" aria-hidden="true" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="font-medium text-sm">{appliance.name}</div>
+          <div className="text-xs text-muted-foreground">{appliance.watts}W</div>
+        </div>
+      </div>
           );
         })}
       </div>

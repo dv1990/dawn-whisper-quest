@@ -17,7 +17,7 @@ export interface Product {
 export interface Appliance {
   id: string;
   name: string;
-  icon: React.ReactNode;
+  icon: any; // Lucide icon component
   watts: number;
   hours: number;
 }

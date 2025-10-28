@@ -3,7 +3,6 @@ import nessPodImage from '@/assets/ness-pod-product.png';
 import nessProImage from '@/assets/ness-pro-product.png';
 import nessCubeImage from '@/assets/ness-cube-product.png';
 import { Wind, Coffee, Tv, Wifi, Fan, Lightbulb } from 'lucide-react';
-import React from 'react';
 
 /**
  * Product catalog configuration
@@ -48,12 +47,12 @@ export const PRODUCTS: Product[] = [
  * Common household appliances for load calculation
  */
 export const COMMON_APPLIANCES: Appliance[] = [
-  { id: 'ac', name: 'Air Conditioner', icon: React.createElement(Wind, { className: 'w-5 h-5' }), watts: 1500, hours: 8 },
-  { id: 'fridge', name: 'Refrigerator', icon: React.createElement(Coffee, { className: 'w-5 h-5' }), watts: 150, hours: 24 },
-  { id: 'tv', name: 'TV', icon: React.createElement(Tv, { className: 'w-5 h-5' }), watts: 100, hours: 6 },
-  { id: 'wifi', name: 'Wi-Fi Router', icon: React.createElement(Wifi, { className: 'w-5 h-5' }), watts: 20, hours: 24 },
-  { id: 'fan', name: 'Ceiling Fans (3)', icon: React.createElement(Fan, { className: 'w-5 h-5' }), watts: 225, hours: 12 },
-  { id: 'lights', name: 'LED Lights (10)', icon: React.createElement(Lightbulb, { className: 'w-5 h-5' }), watts: 100, hours: 8 }
+  { id: 'ac', name: 'Air Conditioner', icon: Wind, watts: 1500, hours: 8 },
+  { id: 'fridge', name: 'Refrigerator', icon: Coffee, watts: 150, hours: 24 },
+  { id: 'tv', name: 'TV', icon: Tv, watts: 100, hours: 6 },
+  { id: 'wifi', name: 'Wi-Fi Router', icon: Wifi, watts: 20, hours: 24 },
+  { id: 'fan', name: 'Ceiling Fans (3)', icon: Fan, watts: 225, hours: 12 },
+  { id: 'lights', name: 'LED Lights (10)', icon: Lightbulb, watts: 100, hours: 8 }
 ];
 
 /**
