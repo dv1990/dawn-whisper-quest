@@ -87,9 +87,16 @@ export default defineConfig(({ mode }) => ({
         entryFileNames: 'assets/[name]-[hash].js',
       }
     },
-    // Enable module preload for better performance
+    // Enhanced module preload for optimal performance
     modulePreload: {
       polyfill: true,
+      resolveDependencies: (filename, deps, { hostType }) => {
+        // Preload all CSS dependencies immediately
+        return deps.filter(dep => {
+          // Always preload CSS files and entry chunks
+          return dep.endsWith('.css') || hostType === 'js';
+        });
+      },
     },
   },
   optimizeDeps: {
