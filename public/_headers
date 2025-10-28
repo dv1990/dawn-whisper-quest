@@ -5,25 +5,8 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Access-Control-Allow-Origin: *
-  Access-Control-Allow-Methods: GET, POST, OPTIONS
+  Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
   Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With
-  Vary: Origin
-
-# JS and Module files with correct MIME types
-/*.js
-  Content-Type: application/javascript
-  Access-Control-Allow-Origin: *
-  Vary: Origin
-
-/*.mjs
-  Content-Type: application/javascript
-  Access-Control-Allow-Origin: *
-  Vary: Origin
-
-# WebAssembly files
-/*.wasm
-  Content-Type: application/wasm
-  Access-Control-Allow-Origin: *
 
 # Cache static assets with versioned filenames for 1 year
 /assets/*
