@@ -1,7 +1,9 @@
-import { ReactNode } from "react";
+import { ReactNode, lazy, Suspense } from "react";
 import NavigationEnhanced from "./NavigationEnhanced";
-import Footer from "./Footer";
-import CookieConsent from "./CookieConsent";
+
+// Lazy load below-the-fold components to reduce initial CSS bundle
+const Footer = lazy(() => import("./Footer"));
+const CookieConsent = lazy(() => import("./CookieConsent"));
 
 interface LayoutProps {
   children: ReactNode;
@@ -15,8 +17,12 @@ const Layout = ({ children, className = "" }: LayoutProps) => {
       <main className={`flex-1 pt-20 ${className}`}>
         {children}
       </main>
-      <Footer />
-      <CookieConsent />
+      <Suspense fallback={<div className="h-20" />}>
+        <Footer />
+      </Suspense>
+      <Suspense fallback={null}>
+        <CookieConsent />
+      </Suspense>
     </div>
   );
 };
