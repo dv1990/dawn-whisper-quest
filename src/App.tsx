@@ -42,7 +42,15 @@ const TroubleshootingGuide = lazy(() => import("./pages/TroubleshootingGuide"));
 const Downloads = lazy(() => import("./pages/Downloads"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-const queryClient = new QueryClient();
+// Create QueryClient instance with default options
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      retry: 1,
+    },
+  },
+});
 
 // Loading fallback component with skeleton
 const PageLoadingFallback = () => (

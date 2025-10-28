@@ -20,7 +20,6 @@ export default defineConfig(({ mode }) => ({
     target: 'es2017',
     minify: 'terser',
     cssCodeSplit: true,
-    cssMinify: 'lightningcss',
     sourcemap: false,
     chunkSizeWarningLimit: 1500,
     terserOptions: {
