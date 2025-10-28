@@ -17,14 +17,14 @@ export default defineConfig(({ mode }) => ({
     dedupe: ['react', 'react-dom', 'react-router-dom']
   },
   build: {
-    target: 'es2017',
+    target: 'es2020',
     minify: 'terser',
     cssCodeSplit: true,
     sourcemap: false,
     chunkSizeWarningLimit: 1500,
     terserOptions: {
       compress: {
-        drop_console: true,
+        drop_console: false,
         drop_debugger: true,
         pure_funcs: ['console.log', 'console.info', 'console.debug'],
         passes: 2,
