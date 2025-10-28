@@ -20,8 +20,8 @@ const ContactEnhanced = lazy(() => import("./pages/ContactEnhanced"));
 const NessAcSync = lazy(() => import("./pages/products/NessAcSync"));
 const EVChargingMicrogrid = lazy(() => import("./pages/EVChargingMicrogrid"));
 
-// Critical homeowner page - Eager loaded to prevent blank screen
-import ContactHomeowner from "./pages/contact/ContactHomeowner";
+// Contact pages - Lazy loaded (includes framer-motion)
+const ContactHomeowner = lazy(() => import("./pages/contact/ContactHomeowner"));
 
 // Secondary pages - Lazy loaded
 const TrueWarranty = lazy(() => import("./pages/TrueWarranty"));

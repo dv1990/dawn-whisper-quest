@@ -2,15 +2,18 @@ import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Shield, Zap, Battery, Clock, ArrowRight, Play, Users, CheckCircle, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { LazySection } from "@/components/ui/lazy-section";
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { PerformanceImage } from "@/components/ui/performance-image";
 import { cn } from "@/lib/utils";
 import nessHeroProduct from "@/assets/ness-hero-product.webp";
 import nessPodProduct from "@/assets/ness-pod-product.png";
 import nessProProduct from "@/assets/ness-pro-product.png";
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
+
+// Lazy load AnimatedCounter to reduce initial bundle
+const AnimatedCounter = lazy(() => 
+  import("@/components/ui/animated-counter").then(m => ({ default: m.AnimatedCounter }))
+);
 
 const Index = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);

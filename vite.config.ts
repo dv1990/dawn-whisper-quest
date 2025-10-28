@@ -18,30 +18,57 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     target: 'es2017',
-    minify: 'esbuild',
+    minify: 'terser',
     cssCodeSplit: true,
     sourcemap: false,
     chunkSizeWarningLimit: 1500,
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug'],
+        passes: 2,
+      },
+      mangle: true,
+      format: {
+        comments: false,
+      },
+    },
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Vendor chunk for React ecosystem
+          // Vendor chunk for React ecosystem (core only)
           if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
+            // React core - keep small
+            if (id.includes('react/') || id.includes('react-dom/') || id.includes('scheduler')) {
               return 'react-vendor';
             }
-            // Framer Motion separate chunk (heavy animation library)
+            // React Router - separate chunk
+            if (id.includes('react-router')) {
+              return 'router';
+            }
+            // Framer Motion separate chunk (only loaded when needed)
             if (id.includes('framer-motion')) {
               return 'framer-motion';
             }
-            // UI components chunk
+            // Three.js and 3D libs (only for lazy-loaded pages)
+            if (id.includes('three') || id.includes('@react-three')) {
+              return 'three-vendor';
+            }
+            // UI components chunk (Radix UI)
             if (id.includes('@radix-ui')) {
               return 'ui-vendor';
+            }
+            // Lucide icons - separate chunk
+            if (id.includes('lucide-react')) {
+              return 'icons';
             }
             // Other vendors
             return 'vendor';
           }
-        }
+        },
+        // Optimize chunk loading
+        experimentalMinChunkSize: 20000,
       }
     }
   },
@@ -52,8 +79,12 @@ export default defineConfig(({ mode }) => ({
       'react-router-dom',
       '@radix-ui/react-tooltip',
       '@radix-ui/react-slot',
-      '@tanstack/react-query'
     ],
-    force: mode === 'production'
+    exclude: [
+      'framer-motion',
+      'three',
+      '@react-three/fiber',
+      '@react-three/drei'
+    ]
   }
 }));
