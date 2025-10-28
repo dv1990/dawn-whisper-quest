@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, MouseEvent } from 'react';
 import { Button, ButtonProps } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -15,7 +15,7 @@ export const AnimatedButton = ({
   onClick,
   ...props 
 }: AnimatedButtonProps) => {
-  const [ripples, setRipples] = React.useState<Array<{ id: number; x: number; y: number }>>([]);
+  const [ripples, setRipples] = useState<Array<{ id: number; x: number; y: number }>>([]);
 
   const animationClasses = {
     'scale': 'hover:scale-105 active:scale-95',
@@ -24,7 +24,7 @@ export const AnimatedButton = ({
     'none': ''
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     if (ripple) {
       const rect = e.currentTarget.getBoundingClientRect();
       const x = e.clientX - rect.left;

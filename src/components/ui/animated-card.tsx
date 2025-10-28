@@ -1,10 +1,10 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import { Card } from '@/components/ui/card';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import { cn } from '@/lib/utils';
 
 interface AnimatedCardProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   delay?: number;
   animation?: 'fade-up' | 'fade-in' | 'scale-in' | 'slide-left' | 'slide-right';

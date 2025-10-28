@@ -1,17 +1,17 @@
-import React from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
 interface PageTransitionProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 
 export const PageTransition = ({ children, className }: PageTransitionProps) => {
   const location = useLocation();
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIsLoading(true);
     const timer = setTimeout(() => setIsLoading(false), 100);
     return () => clearTimeout(timer);
