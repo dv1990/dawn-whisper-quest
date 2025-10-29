@@ -14,13 +14,11 @@ export default defineConfig(({ mode }) => ({
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      // Security headers
+      // Security headers (safe for dev server)
       'X-Frame-Options': 'DENY',
       'X-Content-Type-Options': 'nosniff',
       'Referrer-Policy': 'strict-origin-when-cross-origin',
       'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
-      // Cache control for HTML (no cache)
-      'Cache-Control': 'public, max-age=0, must-revalidate',
     },
   },
   esbuild: {
