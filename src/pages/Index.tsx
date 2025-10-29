@@ -6,7 +6,7 @@ import { LazySection } from "@/components/ui/lazy-section";
 import { PerformanceImage } from "@/components/ui/performance-image";
 import { cn } from "@/lib/utils";
 import nessHeroProduct from "@/assets/ness-hero-product.webp";
-import nessPodProduct from "@/assets/ness-pod-product.png";
+import nessPodProduct from "@/assets/ness-pod-hero-new.webp";
 import nessProProduct from "@/assets/ness-pro-product.png";
 import { useState, useEffect, lazy, Suspense } from "react";
 
