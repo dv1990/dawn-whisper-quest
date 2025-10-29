@@ -4,7 +4,7 @@ import 'vite/modulepreload-polyfill';
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
-// CSS is loaded asynchronously via index.html to avoid render blocking
+import "./index.css";
 
 const rootElement = document.getElementById("root");
 if (rootElement) {
