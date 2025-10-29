@@ -31,6 +31,17 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: true,
     sourcemap: false,
     chunkSizeWarningLimit: 1500,
+    // Enhanced module preload configuration
+    modulePreload: {
+      polyfill: true,
+      resolveDependencies: (filename, deps, { hostId, hostType }) => {
+        // Ensure CSS is preloaded with high priority
+        return deps.filter(dep => {
+          // Preload all critical dependencies
+          return dep.endsWith('.css') || dep.endsWith('.js');
+        });
+      }
+    },
     rollupOptions: {
       treeshake: {
         moduleSideEffects: false,
@@ -102,8 +113,6 @@ export default defineConfig(({ mode }) => ({
         entryFileNames: 'assets/[name]-[hash].js',
       }
     },
-    // Standard module preload
-    modulePreload: true,
   },
   optimizeDeps: {
     include: [
