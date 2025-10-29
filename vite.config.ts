@@ -32,21 +32,26 @@ export default defineConfig(({ mode }) => ({
     sourcemap: false,
     chunkSizeWarningLimit: 1500,
     rollupOptions: {
+      treeshake: {
+        moduleSideEffects: false,
+        propertyReadSideEffects: false,
+        tryCatchDeoptimization: false,
+      },
       output: {
         manualChunks: (id) => {
           // Vendor chunk for React ecosystem (core only)
           if (id.includes('node_modules')) {
-            // React core - keep small
+            // React core - minimal chunk
             if (id.includes('react/') || id.includes('react-dom/') || id.includes('scheduler')) {
-              return 'react-vendor';
+              return 'react-core';
             }
             // React Router - separate chunk
             if (id.includes('react-router')) {
               return 'router';
             }
-            // React Query - bundle with React
+            // React Query - separate chunk (not always needed immediately)
             if (id.includes('@tanstack/react-query')) {
-              return 'react-vendor';
+              return 'query';
             }
             // Framer Motion separate chunk (only loaded when needed)
             if (id.includes('framer-motion')) {
@@ -56,15 +61,36 @@ export default defineConfig(({ mode }) => ({
             if (id.includes('three') || id.includes('@react-three')) {
               return 'three-vendor';
             }
-            // UI components chunk (Radix UI)
+            // Split Radix UI by component groups for better tree-shaking
             if (id.includes('@radix-ui')) {
-              return 'ui-vendor';
+              // Dialog/Sheet components (often mobile-only)
+              if (id.includes('dialog') || id.includes('sheet') || id.includes('alert-dialog')) {
+                return 'ui-dialog';
+              }
+              // Form components
+              if (id.includes('select') || id.includes('checkbox') || id.includes('radio') || id.includes('slider')) {
+                return 'ui-form';
+              }
+              // Dropdown/Menu components
+              if (id.includes('dropdown') || id.includes('context-menu') || id.includes('menubar')) {
+                return 'ui-menu';
+              }
+              // Commonly used components (tooltip, slot, etc)
+              return 'ui-core';
             }
             // Lucide icons - separate chunk
             if (id.includes('lucide-react')) {
               return 'icons';
             }
-            // Other vendors
+            // Recharts (only for specific pages)
+            if (id.includes('recharts')) {
+              return 'charts';
+            }
+            // Form libraries (only for form pages)
+            if (id.includes('react-hook-form') || id.includes('zod') || id.includes('@hookform')) {
+              return 'forms';
+            }
+            // Other vendors - minimize this
             return 'vendor';
           }
         },
@@ -84,15 +110,19 @@ export default defineConfig(({ mode }) => ({
       'react',
       'react-dom',
       'react-router-dom',
-      '@tanstack/react-query',
-      '@radix-ui/react-tooltip',
       '@radix-ui/react-slot',
     ],
     exclude: [
       'framer-motion',
       'three',
       '@react-three/fiber',
-      '@react-three/drei'
+      '@react-three/drei',
+      '@tanstack/react-query',
+      '@radix-ui/react-sheet',
+      '@radix-ui/react-dialog',
+      'react-hook-form',
+      'zod',
+      'recharts'
     ]
   }
 }));
