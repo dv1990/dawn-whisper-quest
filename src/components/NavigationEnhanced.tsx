@@ -2,6 +2,7 @@ import { useState, useEffect, lazy, Suspense } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, ChevronDown, Home, Building2, Wrench, LayoutGrid, ArrowRight, Shield } from "lucide-react";
+import nunamLogo from "@/assets/nunam-logo.png";
 
 // Lazy load mobile menu to reduce initial bundle (only loaded on mobile)
 const MobileMenu = lazy(() => import("./MobileMenu"));
@@ -76,16 +77,12 @@ const NavigationEnhanced = () => {
         <div className="flex items-center justify-between h-16">
           
           {/* Enhanced Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
-            <div className="relative">
-              <div className="w-9 h-9 bg-primary rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 ease-out">
-                <span className="text-primary-foreground font-bold text-base">N</span>
-              </div>
-              <div className="absolute inset-0 bg-primary/20 rounded-xl blur-md -z-10 group-hover:blur-lg transition-all duration-300"></div>
-            </div>
-            <span className="text-xl font-semibold text-foreground group-hover:text-primary transition-all duration-300">
-              NESS Energy
-            </span>
+          <Link to="/" className="flex items-center group">
+            <img 
+              src={nunamLogo} 
+              alt="Nunam" 
+              className="h-8 w-auto group-hover:scale-105 transition-all duration-300 ease-out"
+            />
           </Link>
 
           {/* Enhanced Desktop Navigation */}
