@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   esbuild: {
-    target: 'es2020',
+    target: 'esnext',
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
@@ -26,23 +26,11 @@ export default defineConfig(({ mode }) => ({
     dedupe: ['react', 'react-dom', 'react-router-dom']
   },
   build: {
-    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
-    minify: 'terser',
+    target: 'esnext',
+    minify: 'esbuild',
     cssCodeSplit: true,
     sourcemap: false,
     chunkSizeWarningLimit: 1500,
-    terserOptions: {
-      compress: {
-        drop_console: false,
-        drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.debug'],
-        passes: 2,
-      },
-      mangle: true,
-      format: {
-        comments: false,
-      },
-    },
     rollupOptions: {
       output: {
         manualChunks: (id) => {
@@ -88,10 +76,8 @@ export default defineConfig(({ mode }) => ({
         entryFileNames: 'assets/[name]-[hash].js',
       }
     },
-    // Enhanced module preload for optimal performance
-    modulePreload: {
-      polyfill: true,
-    },
+    // Standard module preload
+    modulePreload: true,
   },
   optimizeDeps: {
     include: [
