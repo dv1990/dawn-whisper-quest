@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 // Import images
 import warrantyHero from "@/assets/warranty-hero-trust.jpg";
-import nessPodProduct from "@/assets/ness-pod-product.png";
+import nessPodProduct from "@/assets-webp/ness-pod-product.webp";
 
 const TrueWarranty = () => {
   useEffect(() => {

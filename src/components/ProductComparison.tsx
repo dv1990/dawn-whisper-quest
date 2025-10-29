@@ -1,9 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import nessPodImage from "@/assets/ness-pod-product.png";
-import nessProImage from "@/assets/ness-pro-product.png";
-import nessCubeImage from "@/assets/ness-cube-product.png";
+import nessPodImage from "@/assets-webp/ness-pod-product.webp";
+import nessProImage from "@/assets-webp/ness-pro-product.webp";
+import nessCubeImage from "@/assets-webp/ness-cube-product.webp";
 
 const products = [
   {

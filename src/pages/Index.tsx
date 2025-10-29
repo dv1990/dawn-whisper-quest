@@ -7,7 +7,7 @@ import { PerformanceImage } from "@/components/ui/performance-image";
 import { cn } from "@/lib/utils";
 import nessHeroProduct from "@/assets/ness-hero-product.webp";
 import nessPodProduct from "@/assets/ness-pod-hero-new.webp";
-import nessProProduct from "@/assets/ness-pro-product.png";
+import nessProProduct from "@/assets-webp/ness-pro-product.webp";
 import { useState, useEffect, lazy, Suspense } from "react";
 
 // Lazy load AnimatedCounter to reduce initial bundle
