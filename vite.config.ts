@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => ({
   build: {
     target: 'es2020',
     minify: 'terser',
-    cssCodeSplit: false, // Inline CSS in JS to eliminate dependency chain
+    cssCodeSplit: true,
     sourcemap: false,
     chunkSizeWarningLimit: 1500,
     terserOptions: {
