@@ -14,11 +14,11 @@ export default defineConfig(({ mode }) => ({
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      // Security headers (safe for dev server)
-      'X-Frame-Options': 'DENY',
+      // Security headers (relaxed for dev environment)
+      'X-Frame-Options': 'SAMEORIGIN',
       'X-Content-Type-Options': 'nosniff',
       'Referrer-Policy': 'strict-origin-when-cross-origin',
-      'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+      'Permissions-Policy': 'camera=(), microphone=(), geolocation=()'
     },
   },
   esbuild: {
@@ -35,7 +35,7 @@ export default defineConfig(({ mode }) => ({
     target: 'esnext',
     minify: 'esbuild',
     cssCodeSplit: true,
-    sourcemap: false,
+    sourcemap: 'hidden',
     chunkSizeWarningLimit: 1500,
     // Enhanced module preload configuration
     modulePreload: {
@@ -111,8 +111,8 @@ export default defineConfig(({ mode }) => ({
             return 'vendor';
           }
         },
-        // Optimize chunk loading
-        experimentalMinChunkSize: 20000,
+        // Optimize chunk loading (30KB reduces HTTP requests)
+        experimentalMinChunkSize: 30000,
         // Add preload directives
         assetFileNames: 'assets/[name]-[hash][extname]',
         chunkFileNames: 'assets/[name]-[hash].js',
@@ -128,15 +128,9 @@ export default defineConfig(({ mode }) => ({
       '@radix-ui/react-slot',
     ],
     exclude: [
-      'framer-motion',
       'three',
       '@react-three/fiber',
       '@react-three/drei',
-      '@tanstack/react-query',
-      '@radix-ui/react-sheet',
-      '@radix-ui/react-dialog',
-      'react-hook-form',
-      'zod',
       'recharts'
     ]
   }
