@@ -35,23 +35,24 @@ const Index = () => {
         <div 
           className="absolute inset-0 w-full h-full"
         >
-          {/* Enhanced ambient glow behind product */}
+          {/* Vibrant ambient glow behind product */}
           <div
             className="absolute inset-0 flex items-center justify-center"
-            style={{ opacity: 0.15 }}
+            style={{ opacity: 0.25 }}
           >
             <div
               className="w-full h-full"
               style={{
-                background: 'radial-gradient(circle at 65% 50%, #00C853 0%, #00E676 30%, transparent 75%)',
-                filter: 'blur(100px)'
+                background: 'radial-gradient(ellipse at 70% 50%, #00E676 0%, #00C853 20%, #00BFA5 40%, transparent 70%)',
+                filter: 'blur(90px)'
               }}
             />
           </div>
 
-          {/* Product Image - Full Screen (no dimming) */}
+          {/* Product Image - Full Screen with enhanced clarity */}
           <div
             className="absolute inset-0 w-full h-full"
+            style={{ filter: 'contrast(1.05) saturate(1.1)' }}
           >
             <PerformanceImage
               src={nessHeroProduct}
@@ -61,11 +62,11 @@ const Index = () => {
             />
           </div>
 
-          {/* Gradient overlay - fades to transparent on right side where product is */}
+          {/* Gradient overlay - minimal coverage on product side */}
           <div 
             className="absolute inset-0"
             style={{
-              background: 'linear-gradient(120deg, #0B1220ee 0%, #0B1220cc 25%, #0B122077 45%, #1C1F2633 65%, transparent 85%)'
+              background: 'linear-gradient(110deg, #0B1220f5 0%, #0B1220dd 20%, #0B122088 40%, #1C1F2622 60%, transparent 80%)'
             }}
           />
         </div>
