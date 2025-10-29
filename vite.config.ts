@@ -5,6 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  base: '/',
   server: {
     host: "::",
     port: 8080,
@@ -15,7 +16,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   esbuild: {
-    target: 'esnext',
+    target: 'es2020',
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
@@ -25,7 +26,7 @@ export default defineConfig(({ mode }) => ({
     dedupe: ['react', 'react-dom', 'react-router-dom']
   },
   build: {
-    target: 'es2020',
+    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
     minify: 'terser',
     cssCodeSplit: true,
     sourcemap: false,
@@ -90,13 +91,6 @@ export default defineConfig(({ mode }) => ({
     // Enhanced module preload for optimal performance
     modulePreload: {
       polyfill: true,
-      resolveDependencies: (filename, deps, { hostType }) => {
-        // Preload all CSS dependencies immediately
-        return deps.filter(dep => {
-          // Always preload CSS files and entry chunks
-          return dep.endsWith('.css') || hostType === 'js';
-        });
-      },
     },
   },
   optimizeDeps: {
