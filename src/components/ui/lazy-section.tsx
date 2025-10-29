@@ -1,55 +1,40 @@
-import { useState, useEffect, useRef, ReactNode } from 'react';
-import { cn } from '@/lib/utils';
-import { performanceMonitor } from '@/lib/performance-monitor';
+import { useEffect, useState, useRef, ReactNode } from 'react';
 
 interface LazySectionProps {
   children: ReactNode;
-  className?: string;
-  fallback?: ReactNode;
   rootMargin?: string;
-  threshold?: number;
-  trackPerformance?: boolean;
-  sectionName?: string;
+  fallback?: ReactNode;
 }
 
-export const LazySection: React.FC<LazySectionProps> = ({
-  children,
-  className,
-  fallback,
-  rootMargin = '100px',
-  threshold = 0.1,
-  trackPerformance = false,
-  sectionName = 'section'
-}) => {
+export const LazySection = ({ 
+  children, 
+  rootMargin = '200px',
+  fallback = <div className="min-h-[400px]" />
+}: LazySectionProps) => {
   const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
+      ([entry]) => {
         if (entry.isIntersecting) {
-          if (trackPerformance) {
-            const tracker = performanceMonitor.markFeature(`lazy-${sectionName}`);
-            setTimeout(() => tracker.end(), 100);
-          }
           setIsVisible(true);
           observer.disconnect();
         }
       },
-      { rootMargin, threshold }
+      { rootMargin }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (ref.current) {
+      observer.observe(ref.current);
     }
 
     return () => observer.disconnect();
-  }, [rootMargin, threshold, trackPerformance, sectionName]);
+  }, [rootMargin]);
 
   return (
-    <div ref={sectionRef} className={cn('w-full', className)}>
-      {isVisible ? children : (fallback || <div className="h-96 bg-muted/5 animate-pulse" />)}
+    <div ref={ref}>
+      {isVisible ? children : fallback}
     </div>
   );
 };
