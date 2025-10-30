@@ -1,13 +1,17 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import react from "@vitejs/plugin-react-swc";
 import path from "path";
+import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
   // IMPORTANT for GitHub Pages: assets served from /<repo>/
   // Use empty string for localhost and proper subpath for production builds if needed.
   base: "/dawn-whisper-quest/",
 
-  plugins: [react()],
+  plugins: [
+    react(), 
+    mode === "development" && componentTagger()
+  ].filter(Boolean),
 
   resolve: {
     alias: {
@@ -23,7 +27,7 @@ export default defineConfig(({ mode }) => ({
   },
 
   build: {
-    target: "es2020",
+    target: "esnext",
     minify: "terser",
     cssCodeSplit: true,
     sourcemap: false,
@@ -36,5 +40,34 @@ export default defineConfig(({ mode }) => ({
         passes: 2,
       },
     },
+    rollupOptions: {
+      output: {
+        // Prevent React duplication by creating separate chunks
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            // React core - keep together to prevent duplication
+            if (id.includes('react/') || id.includes('react-dom/') || id.includes('scheduler')) {
+              return 'react-core';
+            }
+            // React Router - separate chunk
+            if (id.includes('react-router')) {
+              return 'router';
+            }
+            // Other vendors
+            return 'vendor';
+          }
+        },
+      },
+    },
+  },
+
+  // Force React to be pre-bundled and prevent duplication
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      '@radix-ui/react-slot',
+    ],
   },
 }));
