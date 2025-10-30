@@ -227,7 +227,10 @@ export function WhyNess() {
       </div>
 
       <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
-        {features.map((feature, index) => <div key={feature.title} className={`group relative bg-card backdrop-blur-xl border border-border rounded-3xl p-8 cursor-pointer transition-all duration-500 hover:-translate-y-1 hover:shadow-lg ${selectedCard === index ? "shadow-2xl scale-[1.02] border-primary/20" : ""}`} onClick={() => setSelectedCard(selectedCard === index ? null : index)}>
+        {features.map((feature) => {
+          const featureIndex = features.indexOf(feature);
+          return (
+          <div key={feature.title} className={`group relative bg-card backdrop-blur-xl border border-border rounded-3xl p-8 cursor-pointer transition-all duration-500 hover:-translate-y-1 hover:shadow-lg ${selectedCard === featureIndex ? "shadow-2xl scale-[1.02] border-primary/20" : ""}`} onClick={() => setSelectedCard(selectedCard === featureIndex ? null : featureIndex)}>
             <div className="w-16 h-16 rounded-2xl bg-primary/5 flex items-center justify-center mb-8 group-hover:bg-primary/10 transition-all duration-500">
               <feature.icon className="w-8 h-8 text-muted-foreground group-hover:text-primary transition-colors duration-500" />
             </div>
@@ -245,14 +248,16 @@ export function WhyNess() {
 
             <div className="text-sm text-muted-foreground mb-8 font-medium">{feature.benefit}</div>
 
-            {selectedCard === index && <div className="border-t border-border pt-8 mt-8 animate-fade-in">
+            {selectedCard === featureIndex && <div className="border-t border-border pt-8 mt-8 animate-fade-in">
                 <p className="text-muted-foreground leading-relaxed mb-6 font-light">{feature.fullDesc}</p>
               </div>}
 
             <div className="absolute bottom-6 right-6">
-              <div className={`w-2 h-2 rounded-full transition-all duration-500 ${selectedCard === index ? "bg-primary scale-150" : "bg-border group-hover:bg-primary"}`} />
+              <div className={`w-2 h-2 rounded-full transition-all duration-500 ${selectedCard === featureIndex ? "bg-primary scale-150" : "bg-border group-hover:bg-primary"}`} />
             </div>
-          </div>)}
+          </div>
+        );
+        })}
       </div>
 
       {/* <LuxuryManufacturingShowcase /> */}

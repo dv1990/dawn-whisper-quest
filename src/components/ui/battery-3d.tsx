@@ -58,13 +58,16 @@ function BatteryPack({ packCount = 16 }: { packCount?: number }) {
 
   return (
     <group>
-      {positions.map((position, index) => (
-        <BatteryCell
-          key={`battery-cell-${index}`}
-          position={position}
-          active={activeCells.has(index)}
-        />
-      ))}
+      {positions.map((position) => {
+        const cellIndex = positions.indexOf(position);
+        return (
+          <BatteryCell
+            key={`battery-cell-${cellIndex}`}
+            position={position}
+            active={activeCells.has(cellIndex)}
+          />
+        );
+      })}
       <Text
         position={[0, 2.5, 0]}
         fontSize={0.3}

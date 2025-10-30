@@ -176,17 +176,20 @@ const SystemConfigurator = () => {
           
           {/* Progress Indicator */}
           <div className="flex justify-center items-center space-x-3 mt-12">
-            {['Tell us', 'We design', 'You decide'].map((step, index) => (
+            {['Tell us', 'We design', 'You decide'].map((step) => {
+              const stepIndex = ['Tell us', 'We design', 'You decide'].indexOf(step);
+              return (
               <div key={step} className="flex items-center">
                 <div className={`w-3 h-3 rounded-full transition-all duration-500 ${
-                  index <= (activeTab === 'requirements' ? 0 : activeTab === 'appliances' || activeTab === 'system' ? 1 : 2)
-                    ? 'bg-primary scale-100' 
+                  stepIndex <= (activeTab === 'requirements' ? 0 : activeTab === 'appliances' || activeTab === 'system' ? 1 : 2)
+                    ? 'bg-primary scale-100'
                     : 'bg-muted scale-75'
                 }`} />
                 <span className="ml-2 text-sm text-muted-foreground font-medium">{step}</span>
-                {index < 2 && <div className="w-8 h-px bg-muted mx-4" />}
+                {stepIndex < 2 && <div className="w-8 h-px bg-muted mx-4" />}
               </div>
-            ))}
+            );
+            })}
           </div>
         </div>
 

@@ -286,16 +286,18 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="max-w-5xl mx-auto px-8">
-            <div className="relative min-h-[350px] flex items-center justify-center">
-              {testimonials.map((testimonial, index) => (
-                <div 
-                  key={index} 
+            <div className="max-w-5xl mx-auto px-8">
+              <div className="relative min-h-[350px] flex items-center justify-center">
+                {testimonials.map((testimonial) => {
+                  const testimonialIndex = testimonials.indexOf(testimonial);
+                  return (
+                  <div 
+                    key={`testimonial-${testimonialIndex}`}
                   className={cn(
                     "absolute inset-0 transition-all duration-1000 ease-in-out",
-                    currentTestimonial === index 
+                    currentTestimonial === testimonialIndex 
                       ? "opacity-100 translate-x-0" 
-                      : index < currentTestimonial 
+                      : testimonialIndex < currentTestimonial 
                         ? "opacity-0 -translate-x-full" 
                         : "opacity-0 translate-x-full"
                   )}
@@ -313,22 +315,23 @@ const Index = () => {
                       <p className="text-lg text-pearl font-medium">{testimonial.name}</p>
                       <p className="text-sm text-pearl/60 font-light">{testimonial.location}</p>
                     </div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+                })}
 
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-3">
-                {testimonials.map((_, index) => (
-                  <button 
-                    key={index}
-                    onClick={() => setCurrentTestimonial(index)}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-3">
+                  {testimonials.map((_, dotIndex) => (
+                    <button 
+                      key={`dot-${dotIndex}`}
+                      onClick={() => setCurrentTestimonial(dotIndex)}
                     className={cn(
                       "w-2 h-2 rounded-full transition-all duration-500",
-                      currentTestimonial === index 
+                      currentTestimonial === dotIndex 
                         ? "w-8 bg-energy" 
                         : "bg-white/30 hover:bg-white/50"
                     )}
-                    aria-label={`View testimonial ${index + 1}`}
+                    aria-label={`View testimonial ${dotIndex + 1}`}
                   />
                 ))}
               </div>

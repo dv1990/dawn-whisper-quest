@@ -164,7 +164,9 @@ ${formData.message || 'No additional message'}
       `.trim();
 
       // EmailJS disabled until configured - see EMAILJS_SETUP.md
-      console.log('Quote request details:', emailContent);
+      if (import.meta.env.DEV) {
+        console.info('Quote request details:', emailContent);
+      }
 
       toast({
         title: "Configuration Saved!",

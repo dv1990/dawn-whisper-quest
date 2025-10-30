@@ -141,9 +141,10 @@ const IndiaInstallationMap = () => {
           style={{ pointerEvents: 'none' }}
         >
           {/* Installation dots with pulse animation */}
-          {installations.map((installation, index) => {
+          {installations.map((installation) => {
             const { x, y } = latLngToSVG(installation.lat, installation.lng);
-            const isAnimated = animatedDots.includes(index);
+            const installationIndex = installations.indexOf(installation);
+            const isAnimated = animatedDots.includes(installationIndex);
             
             return (
               <g key={`${installation.lat}-${installation.lng}`} opacity={isAnimated ? 1 : 0}>
@@ -162,7 +163,7 @@ const IndiaInstallationMap = () => {
                     from="4"
                     to="16"
                     dur="2s"
-                    begin={`${index * 0.03}s`}
+                    begin={`${installationIndex * 0.03}s`}
                     repeatCount="indefinite"
                   />
                   <animate
@@ -170,7 +171,7 @@ const IndiaInstallationMap = () => {
                     from="0.8"
                     to="0"
                     dur="2s"
-                    begin={`${index * 0.03}s`}
+                    begin={`${installationIndex * 0.03}s`}
                     repeatCount="indefinite"
                   />
                 </circle>
@@ -188,7 +189,7 @@ const IndiaInstallationMap = () => {
                     from="0"
                     to="4"
                     dur="0.3s"
-                    begin={`${index * 0.03}s`}
+                    begin={`${installationIndex * 0.03}s`}
                     fill="freeze"
                   />
                 </circle>
@@ -206,7 +207,7 @@ const IndiaInstallationMap = () => {
                     from="0"
                     to="2"
                     dur="0.3s"
-                    begin={`${index * 0.03}s`}
+                    begin={`${installationIndex * 0.03}s`}
                     fill="freeze"
                   />
                 </circle>

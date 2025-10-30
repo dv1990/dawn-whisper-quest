@@ -16,8 +16,7 @@ export const WizardProgress: React.FC<WizardProgressProps> = ({
     <div className="mb-8" role="navigation" aria-label="Form progress">
       {/* Progress Bars */}
       <div className="flex items-center justify-between max-w-2xl mx-auto">
-        {Array.from({ length: totalSteps }).map((_, index) => {
-          const stepNumber = index + 1;
+        {Array.from({ length: totalSteps }, (_, i) => i + 1).map((stepNumber) => {
           const isCompleted = currentStep > stepNumber;
           const isCurrent = currentStep === stepNumber;
           
@@ -31,7 +30,7 @@ export const WizardProgress: React.FC<WizardProgressProps> = ({
                     : "bg-muted text-muted-foreground"
                 )}
                 aria-current={isCurrent ? 'step' : undefined}
-                aria-label={`Step ${stepNumber}: ${stepLabels[index]}${isCompleted ? ' - Completed' : ''}${isCurrent ? ' - Current' : ''}`}
+                aria-label={`Step ${stepNumber}: ${stepLabels[stepNumber - 1]}${isCompleted ? ' - Completed' : ''}${isCurrent ? ' - Current' : ''}`}
               >
                 {isCompleted ? <Check className="w-5 h-5" aria-hidden="true" /> : stepNumber}
               </div>
@@ -51,12 +50,12 @@ export const WizardProgress: React.FC<WizardProgressProps> = ({
       
       {/* Step Labels */}
       <div className="flex justify-between max-w-2xl mx-auto mt-3 text-sm text-muted-foreground">
-        {stepLabels.map((label, index) => (
+        {stepLabels.map((label, labelIndex) => (
           <span
-            key={index}
+            key={label}
             className={cn(
               "transition-colors",
-              currentStep === index + 1 && "text-foreground font-medium"
+              currentStep === labelIndex + 1 && "text-foreground font-medium"
             )}
           >
             {label}
