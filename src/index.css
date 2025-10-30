@@ -228,4 +228,21 @@
     @apply hover:border-foreground/40 hover:bg-foreground/5;
     font-family: var(--font-system);
   }
+  
+  /* Hero Overlay Utilities - For dark gradients on image backgrounds */
+  .hero-overlay-dark {
+    background: linear-gradient(to right, hsl(var(--charcoal) / 0.8), hsl(var(--charcoal) / 0.5), transparent);
+  }
+  
+  .hero-overlay-bottom {
+    background: linear-gradient(to top, hsl(var(--charcoal) / 0.6), transparent);
+  }
+  
+  .hero-text-light {
+    @apply text-pearl;
+  }
+  
+  .hero-text-light-muted {
+    @apply text-pearl/80;
+  }
 }
