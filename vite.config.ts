@@ -5,8 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  // Use base path only in production for GitHub Pages
-  base: mode === 'production' ? '/dawn-whisper-quest/' : '/',
+  base: '/',  // Use root path for proper React Fast Refresh
   server: {
     host: "::",
     port: 8080,
