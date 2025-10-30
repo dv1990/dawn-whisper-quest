@@ -10,15 +10,9 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
     headers: {
-      // CORS headers
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      // Security headers (safe for dev server)
-      'X-Frame-Options': 'DENY',
-      'X-Content-Type-Options': 'nosniff',
-      'Referrer-Policy': 'strict-origin-when-cross-origin',
-      'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
     },
   },
   esbuild: {
@@ -37,17 +31,6 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: true,
     sourcemap: false,
     chunkSizeWarningLimit: 1500,
-    // Enhanced module preload configuration
-    modulePreload: {
-      polyfill: true,
-      resolveDependencies: (filename, deps, { hostId, hostType }) => {
-        // Ensure CSS is preloaded with high priority
-        return deps.filter(dep => {
-          // Preload all critical dependencies
-          return dep.endsWith('.css') || dep.endsWith('.js');
-        });
-      }
-    },
     rollupOptions: {
       treeshake: {
         moduleSideEffects: false,
@@ -119,6 +102,8 @@ export default defineConfig(({ mode }) => ({
         entryFileNames: 'assets/[name]-[hash].js',
       }
     },
+    // Standard module preload
+    modulePreload: true,
   },
   optimizeDeps: {
     include: [
