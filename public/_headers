@@ -70,7 +70,6 @@
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
   Content-Type: text/html; charset=utf-8
-  X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
 
@@ -80,7 +79,6 @@
 
 /*
   Cache-Control: public, max-age=0, must-revalidate
-  X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
